@@ -157,17 +157,25 @@ def play(driver: webdriver.Chrome, wait: WebDriverWait, engine: stockfish.Stockf
     driver.execute_script(scr)
     Log.info("board item added")
 
+    think_before_act = random.randint(3, 6)
+
     Log.info("Playing next move...")
-    # sleep(1)
+    
+    sleep(0.05)
+
     e0 = wait.until(EC.element_to_be_clickable((By.CLASS_NAME, pos0)))
     e0.click()
     Log.info("First clicked...")
-    # sleep(0.05)
-    e1 = wait.until(EC.element_to_be_clickable((By.CLASS_NAME, C.some_id)))
-    e1.click()
-    Log.info("Second clicked...")
+    
+    sleep(0.05)
 
-    # sleep(1)
+    e1 = wait.until(EC.element_to_be_clickable((By.CLASS_NAME, C.some_id)))
+    
+    sleep(think_before_act)
+
+    e1.click()
+    
+    Log.info("Second clicked...")
     Log.info("The move is played")
     Log.info("Removing the pointer...")
     scr1 = """
